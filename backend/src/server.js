@@ -30,6 +30,12 @@ app.get("/", (req, res) => {
 });
 
 app.listen(ENV.PORT, () => {
-  console.log(`Server is running: http://localhost:${ENV.PORT}`);
+  // listen for local development
+  if (ENV.NODE_ENV !== "development") {
+    console.log(`Server is running: http://localhost:${ENV.PORT}`);
+  }
   connectDB();
 });
+
+// export for vercel
+export default app;
